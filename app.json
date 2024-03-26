@@ -1,0 +1,73 @@
+{
+    "name": "˹ᴀᴀʀᴏʜɪ ˼ [V2]",
+    "description": "A Telegram Music Player Bot, written in Python with Pyrogram and Py-Tgcalls.",
+    "logo": "https://telegra.ph/file/312bf3022b3f673cdf374.jpg",
+    "keywords": [
+    "python3",
+    "telegram",
+    "bot",
+    "VenomX",
+    "MusicBot",
+    "telegram-bot",
+    "pyrogram"
+    ],
+    "env": {
+      "API_ID": {
+        "description": "Get this value from https://my.telegram.org",
+        "value": "21971830",
+        "required": true
+      },
+      "API_HASH": {
+        "description": "Get this value from https://my.telegram.org",
+        "value": "46389a1d51d331e5d30d4d6b8a101f3d",
+        "required": true
+      },
+      "BOT_TOKEN": {
+        "description": "A Bot's token from Botfather",
+        "value": "6388069848:AAGewqCWR9gbhzT4PItw42BRh79tYenIsR4",
+        "required": true
+      },
+      "MONGO_DB_URI": {
+        "description": "Get a mongodb url from https://cloud.mongodb.com.",
+        "value": "mongodb+srv://ariopp:ariopp@cluster0.fpdbynt.mongodb.net/?retryWrites=true&w=majority",
+        "required": true
+      },
+      "OWNER_ID": {
+        "description": "The user id of user whom you would like to add as OWNER.",
+        "value": "6352061770",
+        "required": true
+      },
+      "STRING_SESSION": {
+        "description": "A Pyrogram v2 String Session from @Shsusu_bot on Telegram.",
+        "value": "BQG_NJ0AuoT17pVJSsQRES19b10A57v3Ewx5eRYL_zIMz1romTkzBXhnmR4Dpbhr-_5VeN64PEReEfpUKtnCu71_r3FTI1Sxf9SPrmLfHNee3Bbf6PQcqlxnSfCROUan6TRy1RrLX02fjibUmvXT_87IZ5rfxX6JjMyAMjnZc-8tMDGRri_W2oGAWGfLlKMbm09JcgIwunhUCAjIG3c1BcHdWyNITruF6Y80hHtskomqCbLUMSTSuXnIpPmkDthMRS7WR5S6IAH0q4A-C3YboDibc2LgRXwxQ1keP2QE0P_Kilyw1Klo9Hi2HEsKTHA0KxmctT80xifN9SzAAIOVC-5Y2C2qSQAAAAGJXS2QAA",
+        "required": true
+      },
+      "HEROKU_API_KEY": {
+        "description": "Your Heroku account's API key",
+        "value": "",
+        "required": false
+      },
+      "HEROKU_APP_NAME": {
+        "description": "Your heroku app name",
+        "value": "",
+        "required": false
+      },
+      "LOGGER_ID": {
+        "description": "Your Log Group ID, add your bot and promote as an admin with full rights!. Channel ki id mat daal dena bsdk.",
+        "value": "-1002043787206",
+        "required": true
+      }
+    },
+    "buildpacks": [
+          {
+              "url": "heroku/python"
+          },
+          {
+              "url": "heroku/nodejs"
+          },
+          {
+              "url": "https://github.com/jonathanong/heroku-buildpack-ffmpeg-latest.git"
+          }
+      ],
+      "stack": "container"
+  }
