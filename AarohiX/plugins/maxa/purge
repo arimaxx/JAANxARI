@@ -1,0 +1,47 @@
+from pyrogram import Client
+from pyrogram import filters
+from pyrogram.types import User
+from AarohiX import app
+
+async def get_user(user_input: str):
+    try:
+        user_id = int(user_input)
+        user = await app.get_users(user_id)
+    except ValueError:
+        user = await app.get_users(user_input)
+    return user
+
+# Delete messages handler
+@app.on_message(filters.group & filters.text)
+async def delete_messages(client, message):
+    # Check if the message sender is an admin and the message sender is the target user
+    chat_member = await client.get_chat_member(message.chat.id, message.from_user.id)
+    if chat_member.status in ["administrator", "creator"]:
+        await delete_all_messages_from_user(message)
+
+async def delete_all_messages_from_user(message):
+    async for msg in message.client.iter_history(message.chat.id):
+        if msg.from_user and msg.from_user.id == user_id:
+            await message.client.delete_messages(message.chat.id, msg.message_id)
+            # Comment indicating messages are being deleted
+            print("Messages are being deleted...")
+
+# Handle user tag
+@app.on_message(filters.group & filters.text & filters.regex(r"^@(\w+)$"))
+async def handle_tagged_user(client, message):
+    if message.reply_to_message and message.reply_to_message.from_user:
+        user = message.reply_to_message.from_user
+        if user.id != message.from_user.id:
+            await message.reply_text(f"The tagged user is: {user.first_name}")
+
+# Purge command handler
+@app.on_message(filters.command("purge") & filters.group & filters.reply)
+async def purge_messages(client, message):
+    chat_member = await client.get_chat_member(message.chat.id, message.from_user.id)
+    if chat_member.status in ["administrator", "creator"]:
+        target_user = message.reply_to_message.from_user
+        async for msg in message.client.iter_history(message.chat.id):
+            if msg.from_user and msg.from_user.id == target_user.id:
+                await message.client.delete_messages(message.chat.id, msg.message_id)
+                # Comment indicating messages are being deleted
+                print("Messages are being deleted...")
