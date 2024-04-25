@@ -1,0 +1,20 @@
+from pyrogram import Client
+import random
+
+session_file_path = 'path_to_your_session_file'
+
+# List of random messages
+messages = [
+    "Hello @{}! This is a random message 1.",
+    "Hey @{}, here comes a random message 2.",
+    "Greetings @{}! Random message 3 is here."
+]
+
+with Client(session_file=session_file_path) as app:
+    chat = app.resolve_peer('target_group_username')
+    participants = app.get_chat_members(chat.chat_id)
+
+    for member in participants:
+        if member.user.username:
+            random_message = random.choice(messages).format(member.user.username)
+            app.send_message(chat.chat_id, random_message)
