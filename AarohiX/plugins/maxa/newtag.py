@@ -12,7 +12,7 @@ messages = [
 ]
 
 # Initialize Pyrogram client
-app = Client(session_file=session_file_path)
+app = Client("my_session", api_id=API_ID, api_hash=API_HASH)
 
 # Command to trigger the sending of random morning messages
 @app.on_message(filters.command("morning"))
