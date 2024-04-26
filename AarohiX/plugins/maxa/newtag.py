@@ -14,13 +14,16 @@ messages = [
 # Initialize Pyrogram client
 app = Client("my_session", api_id=API_ID, api_hash=API_HASH, session_string=session_file_path)
 
-# Command to trigger the sending of random morning messages
 @app.on_message(filters.command("morning", prefixes="/"))
 def send_morning_messages(client, message):
-    chat = cclient.get_chat('target_group_username')
-    participants = client.get_chat_members(chat.chat_id)
+    print("Received /morning command")
+    chat = client.get_chat('target_group_username')
+    print("Got chat object:", chat)
+    participants = client.get_chat_members(chat.id)
+    print("Got participants:", participants)
 
     for member in participants:
         if member.user.username:
             random_message = random.choice(messages).format(member.user.username)
+            print("Sending message to", member.user.username)
             client.send_message(chat.id, random_message)
